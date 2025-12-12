@@ -25,7 +25,7 @@ void enqueue(Node*& head, Node*& tail, string n, string d) {
   }
 }
 
-void deque(Node*& head, Node*& tail) {
+void dequeue(Node*& head, Node*& tail) {
   if (!head) {
     return;
   }
@@ -38,9 +38,65 @@ void deque(Node*& head, Node*& tail) {
   delete temp;
 }
 
+void printQueue(Node* head) {
+  if (!head) {
+    cout << "Empty queue.\n";
+    return;
+  }
+
+  int count = 1;
+  Node* curr = head;
+  while (curr) {
+    cout << "[" << count++ << "]" << curr->name << " ordered " << curr->drink
+         << endl;
+    curr = curr->next;
+  }
+  cout << endl;
+}
+
 int main() {
-  string names[] = {"Alex", "Jordan", "Taylor", "Morgan", "Casey"};
-  string drinks[] = {"Latte", "Mocha", "Espresso", "Cappuccino", "Americano"};
+  srand(time(0));
+  // updated to have 20 names and 20 drinks
+  string names[] = {"Alex",   "Jordan", "Taylor",  "Morgan",  "Casey",
+                    "Riley",  "Jamie",  "Avery",   "Quinn",   "Parker",
+                    "Drew",   "Reese",  "Skyler",  "Rowan",   "Emerson",
+                    "Hayden", "Blake",  "Cameron", "Kendall", "Logan"};
+  string drinks[] = {"Latte",
+                     "Mocha",
+                     "Espresso",
+                     "Cappuccino",
+                     "Americano",
+                     "Flat White",
+                     "Macchiato",
+                     "Iced Latte",
+                     "Cold Brew",
+                     "Nitro Cold Brew",
+                     "Chai Latte",
+                     "Matcha Latte",
+                     "Hot Chocolate",
+                     "Caramel Latte",
+                     "Vanilla Latte",
+                     "Pumpkin Spice Latte",
+                     "Cinnamon Dolce Latte",
+                     "White Mocha",
+                     "Iced Americano",
+                     "Iced Mocha"};
+
+  Node* head = nullptr;
+  Node* tail = nullptr;
+
+  for (int i = 0; i < 3; i++) {
+    string n = names[rand() % 20];
+    string d = drinks[rand() % 20];
+    enqueue(head, tail, n, d);
+  }
+  cout << "Initial queue:\n";
+  printQueue(head);
+
+  dequeue(head, tail);
+
+  cout << "After serving one customer:\n";
+  printQueue(head);
 
   return 0;
 }

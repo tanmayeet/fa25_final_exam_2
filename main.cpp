@@ -125,7 +125,8 @@ int main() {
   for (int i = 0; i < braceletQueue.size(); i++) {
     cout << "[" << i + 1 << "] " << braceletQueue[i] << endl;
   }
-  cout << endl;
+  // two spaces for clarity
+  cout << "\n\n";
 
   // running the simulation 10 times
   for (int round = 1; round <= 10; round++) {
@@ -137,25 +138,30 @@ int main() {
       string d = drinks[rand() % 20];
       enqueue(head, tail, n, d);
       cout << "A new customer joined the coffee queue.\n";
+    }
 
+    if (rand() % 2 == 0) {
       // for muffins
       string n = names[rand() % 20];
       muffinQueue.push_back(n);
       cout << "A new customer joined the muffin queue.\n";
+    }
 
+    if (rand() % 2 == 0) {
       // for bracelets
       string n = names[rand() % 20];
       braceletQueue.push_back(n);
       cout << "A new customer joined the bracelet queue.\n";
     }
+    cout << endl;
     dequeue(head, tail);
 
     if (!muffinQueue.empty()) {
       muffinQueue.pop_front();
     }
 
-    if (!muffinQueue.empty()) {
-      muffinQueue.pop_back();
+    if (!braceletQueue.empty()) {
+      braceletQueue.pop_back();
     }
 
     cout << "Coffee booth queue:\n";
@@ -180,6 +186,7 @@ int main() {
       }
       cout << endl;
     }
+    cout << "\n\n";
   }
   return 0;
 }

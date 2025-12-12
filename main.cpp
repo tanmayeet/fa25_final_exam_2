@@ -217,7 +217,20 @@ int main() {
       cout << endl;
     }
 
-        cout << "\n\n";
+    cout << "Saxophone booth queue:\n";
+    if (saxQueue.empty()) {
+      cout << "Empty queue.\n";
+    } else {
+      stack<string> temp2 = saxQueue;
+      int pos2 = 1;
+      while (!temp2.empty()) {
+        cout << "[" << pos2++ << "] " << temp2.top() << endl;
+        temp2.pop();
+      }
+    }
+    cout << endl;
   }
+
+  cout << "\n\n";
   return 0;
 }

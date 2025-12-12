@@ -2,6 +2,7 @@
 #include <ctime>
 #include <deque>
 #include <iostream>
+#include <stack>
 #include <string>
 #include <vector>
 using namespace std;
@@ -93,6 +94,8 @@ int main() {
   deque<string> muffinQueue;
   // for milestone 4
   vector<string> braceletQueue;
+  // for milestone 5
+  stack<string> saxQueue;
 
   // part of Milestone 2
   for (int i = 0; i < 3; i++) {
@@ -112,6 +115,11 @@ int main() {
     braceletQueue.push_back(n);
   }
 
+  for (int i = 0; i < 3; i++) {
+    string n = names[rand() % 20];
+    saxQueue.push(n);
+  }
+
   cout << "Initial queue for drinks:\n";
   printQueue(head);
 
@@ -125,6 +133,16 @@ int main() {
   for (int i = 0; i < braceletQueue.size(); i++) {
     cout << "[" << i + 1 << "] " << braceletQueue[i] << endl;
   }
+  cout << endl;
+
+  cout << "Initial queue for saxophones:\n";
+  stack<string> temp = saxQueue;
+  int pos = 1;
+  while (!temp.empty()) {
+    cout << "[" << pos++ << "] " << temp.top() << endl;
+    temp.pop();
+  }
+
   // two spaces for clarity
   cout << "\n\n";
 
@@ -153,6 +171,14 @@ int main() {
       braceletQueue.push_back(n);
       cout << "A new customer joined the bracelet queue.\n";
     }
+
+    if (rand() % 2 == 0) {
+      // for saxophones
+      string n = names[rand() % 20];
+      saxQueue.push(n);
+      cout << "A new customer joined the saxophone queue.\n";
+    }
+
     cout << endl;
     dequeue(head, tail);
 
@@ -162,6 +188,10 @@ int main() {
 
     if (!braceletQueue.empty()) {
       braceletQueue.pop_back();
+    }
+
+    if (!saxQueue.empty()) {
+      saxQueue.pop();
     }
 
     cout << "Coffee booth queue:\n";
@@ -186,7 +216,8 @@ int main() {
       }
       cout << endl;
     }
-    cout << "\n\n";
+
+        cout << "\n\n";
   }
   return 0;
 }

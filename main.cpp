@@ -25,6 +25,11 @@ struct Node {
 
 // adds customer to end of the queue
 // referenced notes on linked lists while writing this
+
+// enqueue() adds a new customer to the end of the coffee booth queue
+// arguments: head (pointer to the front of the queue), tail (pointer to the end
+// of the queue), n (customer name), d (drink order)
+// returns: nothing
 void enqueue(Node*& head, Node*& tail, string n, string d) {
   Node* temp = new Node;
   temp->name = n;
@@ -39,6 +44,10 @@ void enqueue(Node*& head, Node*& tail, string n, string d) {
   }
 }
 
+// dequeue() removes a customer at the front of the coffee booth queue
+// arguments: head (pointer to the front of the queue), tail (pointer to the end
+// of the queue)
+// returns: nothing
 void dequeue(Node*& head, Node*& tail) {
   if (!head) {
     return;
@@ -52,6 +61,9 @@ void dequeue(Node*& head, Node*& tail) {
   delete temp;
 }
 
+// printQueue() displays all the customers currently in the coffee booth queue
+// arguments: head (pointer to the front of the queue)
+// returns: nothing
 void printQueue(Node* head) {
   if (!head) {
     cout << "Empty queue.\n";
@@ -104,7 +116,7 @@ int main() {
   // for milestone 4
   vector<string> braceletQueue;
   // for milestone 5
-  stack<string> saxQueue;
+  stack<string> saxStack;
 
   // part of Milestone 2
   for (int i = 0; i < init; i++) {
@@ -126,11 +138,12 @@ int main() {
 
   for (int i = 0; i < init; i++) {
     string n = names[rand() % namesNum];
-    saxQueue.push(n);
+    saxStack.push(n);
   }
 
   cout << "Initial queue for drinks:\n";
   printQueue(head);
+  cout << endl;
 
   cout << "Initial queue for muffins:\n";
   for (int i = 0; i < muffinQueue.size(); i++) {
@@ -144,16 +157,15 @@ int main() {
   }
   cout << endl;
 
-  cout << "Initial queue for saxophones:\n";
-  stack<string> temp = saxQueue;
+  cout << "Initial stack for saxophones:\n";
+  stack<string> temp = saxStack;
   int pos = 1;
   while (!temp.empty()) {
     cout << "[" << pos++ << "] " << temp.top() << endl;
     temp.pop();
   }
 
-  // two spaces for clarity
-  cout << "\n\n";
+  cout << "\n";
 
   // running the simulation 10 times
   for (int round = 1; round <= sim; round++) {
@@ -184,8 +196,8 @@ int main() {
     if (rand() % prob == 0) {
       // for saxophones
       string n = names[rand() % namesNum];
-      saxQueue.push(n);
-      cout << "A new customer joined the saxophone queue.\n";
+      saxStack.push(n);
+      cout << "A new customer joined the saxophone stack.\n";
     }
 
     cout << endl;
@@ -199,8 +211,8 @@ int main() {
       braceletQueue.erase(braceletQueue.begin());
     }
 
-    if (!saxQueue.empty()) {
-      saxQueue.pop();
+    if (!saxStack.empty()) {
+      saxStack.pop();
     }
 
     cout << "Coffee booth queue:\n";
@@ -228,10 +240,10 @@ int main() {
     cout << endl;
 
     cout << "Saxophone booth stack:\n";
-    if (saxQueue.empty()) {
-      cout << "Empty queue.\n";
+    if (saxStack.empty()) {
+      cout << "Empty stack.\n";
     } else {
-      stack<string> temp2 = saxQueue;
+      stack<string> temp2 = saxStack;
       int pos2 = 1;
       while (!temp2.empty()) {
         cout << "[" << pos2++ << "] " << temp2.top() << endl;

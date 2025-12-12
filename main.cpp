@@ -1,3 +1,6 @@
+#include <cstdlib>
+#include <ctime>
+#include <deque>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -85,17 +88,34 @@ int main() {
   Node* head = nullptr;
   Node* tail = nullptr;
 
+  deque<string> muffinQueue;
+
   // part of Milestone 2
   for (int i = 0; i < 3; i++) {
     string n = names[rand() % 20];
     string d = drinks[rand() % 20];
     enqueue(head, tail, n, d);
   }
-  cout << "Initial queue:\n";
+
+  // For muffin queue
+  for (int i = 0; i < 3; i++) {
+    string n = names[rand() % 20];
+    muffinQueue.push_back(n);
+  }
+
+  cout << "Initial queue for drinks:\n";
   printQueue(head);
 
+  cout << "Initiaal queue for muffins:\n";
+  for (int i = 0; i < muffinQueue.size(); i++) {
+    cout << "[" << i + 1 << "]" << muffinQueue[i] << endl;
+  }
+  cout << endl;
+
+  // running the simulation 10 times
   for (int round = 1; round <= 10; round++) {
     cout << "Round " << round << ":\n";
+    // 50% probability
     if (rand() % 2 == 0) {
       string n = names[rand() % 20];
       string d = drinks[rand() % 20];

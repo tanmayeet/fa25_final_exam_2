@@ -7,6 +7,12 @@
 #include <vector>
 using namespace std;
 
+const int namesNum = 20;
+const int drinksNum = 20;
+const int init = 3;
+const int sim = 10;
+const int prob = 2;
+
 // coffee booth queue simulation struct
 struct Node {
   string name;
@@ -52,8 +58,8 @@ void printQueue(Node* head) {
   int count = 1;
   Node* curr = head;
   while (curr) {
-    cout << "[" << count++ << "] " << curr->name << " ordered " << curr->drink
-         << endl;
+    cout << "[" << count++ << "] " << curr->name << " ordered a(n) "
+         << curr->drink << endl;
     curr = curr->next;
   }
   cout << endl;
@@ -98,25 +104,25 @@ int main() {
   stack<string> saxQueue;
 
   // part of Milestone 2
-  for (int i = 0; i < 3; i++) {
-    string n = names[rand() % 20];
-    string d = drinks[rand() % 20];
+  for (int i = 0; i < init; i++) {
+    string n = names[rand() % namesNum];
+    string d = drinks[rand() % drinksNum];
     enqueue(head, tail, n, d);
   }
 
   // For muffin queue
-  for (int i = 0; i < 3; i++) {
-    string n = names[rand() % 20];
+  for (int i = 0; i < init; i++) {
+    string n = names[rand() % namesNum];
     muffinQueue.push_back(n);
   }
 
-  for (int i = 0; i < 3; i++) {
-    string n = names[rand() % 20];
+  for (int i = 0; i < init; i++) {
+    string n = names[rand() % namesNum];
     braceletQueue.push_back(n);
   }
 
-  for (int i = 0; i < 3; i++) {
-    string n = names[rand() % 20];
+  for (int i = 0; i < init; i++) {
+    string n = names[rand() % namesNum];
     saxQueue.push(n);
   }
 
@@ -147,10 +153,10 @@ int main() {
   cout << "\n\n";
 
   // running the simulation 10 times
-  for (int round = 1; round <= 10; round++) {
+  for (int round = 1; round <= sim; round++) {
     cout << "Round " << round << ":\n";
     // 50% probability
-    if (rand() % 2 == 0) {
+    if (rand() % prob == 0) {
       // for drinks
       string n = names[rand() % 20];
       string d = drinks[rand() % 20];
@@ -158,21 +164,21 @@ int main() {
       cout << "A new customer joined the coffee queue.\n";
     }
 
-    if (rand() % 2 == 0) {
+    if (rand() % prob == 0) {
       // for muffins
       string n = names[rand() % 20];
       muffinQueue.push_back(n);
       cout << "A new customer joined the muffin queue.\n";
     }
 
-    if (rand() % 2 == 0) {
+    if (rand() % prob == 0) {
       // for bracelets
       string n = names[rand() % 20];
       braceletQueue.push_back(n);
       cout << "A new customer joined the bracelet queue.\n";
     }
 
-    if (rand() % 2 == 0) {
+    if (rand() % prob == 0) {
       // for saxophones
       string n = names[rand() % 20];
       saxQueue.push(n);
@@ -204,8 +210,8 @@ int main() {
       for (int i = 0; i < muffinQueue.size(); i++) {
         cout << "[" << i + 1 << "] " << muffinQueue[i] << endl;
       }
-      cout << endl;
     }
+    cout << endl;
 
     cout << "Friendship booth queue:\n";
     if (braceletQueue.empty()) {
@@ -214,10 +220,10 @@ int main() {
       for (int i = 0; i < braceletQueue.size(); i++) {
         cout << "[" << i + 1 << "] " << braceletQueue[i] << endl;
       }
-      cout << endl;
     }
+    cout << endl;
 
-    cout << "Saxophone booth queue:\n";
+    cout << "Saxophone booth stack:\n";
     if (saxQueue.empty()) {
       cout << "Empty queue.\n";
     } else {
@@ -228,8 +234,8 @@ int main() {
         temp2.pop();
       }
     }
-    cout << endl;
   }
+  cout << endl;
 
   cout << "\n\n";
   return 0;

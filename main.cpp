@@ -3,6 +3,7 @@
 #include <deque>
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 // coffee booth queue simulation struct
@@ -88,7 +89,10 @@ int main() {
   Node* head = nullptr;
   Node* tail = nullptr;
 
+  // for milestone 3
   deque<string> muffinQueue;
+  // for milestone 4
+  vector<string> braceletQueue;
 
   // part of Milestone 2
   for (int i = 0; i < 3; i++) {
@@ -103,6 +107,11 @@ int main() {
     muffinQueue.push_back(n);
   }
 
+  for (int i = 0; i < 3; i++) {
+    string n = names[rand() % 20];
+    braceletQueue.push_back(n);
+  }
+
   cout << "Initial queue for drinks:\n";
   printQueue(head);
 
@@ -112,27 +121,43 @@ int main() {
   }
   cout << endl;
 
+  cout << "Initial queue for friendship bracelets:\n";
+  for (int i = 0; i < braceletQueue.size(); i++) {
+    cout << "[" << i + 1 << "] " << braceletQueue[i] << endl;
+  }
+  cout << endl;
+
   // running the simulation 10 times
   for (int round = 1; round <= 10; round++) {
     cout << "Round " << round << ":\n";
     // 50% probability
     if (rand() % 2 == 0) {
+      // for drinks
       string n = names[rand() % 20];
       string d = drinks[rand() % 20];
       enqueue(head, tail, n, d);
       cout << "A new customer joined the coffee queue.\n";
-    }
 
-    if (rand() % 2 == 0) {
+      // for muffins
       string n = names[rand() % 20];
       muffinQueue.push_back(n);
       cout << "A new customer joined the muffin queue.\n";
+
+      // for bracelets
+      string n = names[rand() % 20];
+      braceletQueue.push_back(n);
+      cout << "A new customer joined the bracelet queue.\n";
     }
     dequeue(head, tail);
 
     if (!muffinQueue.empty()) {
       muffinQueue.pop_front();
     }
+
+    if (!muffinQueue.empty()) {
+      muffinQueue.pop_back();
+    }
+
     cout << "Coffee booth queue:\n";
     printQueue(head);
 
@@ -142,6 +167,16 @@ int main() {
     } else {
       for (int i = 0; i < muffinQueue.size(); i++) {
         cout << "[" << i + 1 << "] " << muffinQueue[i] << endl;
+      }
+      cout << endl;
+    }
+
+    cout << "Friendship booth queue:\n";
+    if (braceletQueue.empty()) {
+      cout << "Empty queue.\n";
+    } else {
+      for (int i = 0; i < braceletQueue.size(); i++) {
+        cout << "[" << i + 1 << "] " << braceletQueue[i] << endl;
       }
       cout << endl;
     }

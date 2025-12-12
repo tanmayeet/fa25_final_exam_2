@@ -106,7 +106,7 @@ int main() {
   cout << "Initial queue for drinks:\n";
   printQueue(head);
 
-  cout << "Initiaal queue for muffins:\n";
+  cout << "Initial queue for muffins:\n";
   for (int i = 0; i < muffinQueue.size(); i++) {
     cout << "[" << i + 1 << "]" << muffinQueue[i] << endl;
   }
@@ -120,11 +120,31 @@ int main() {
       string n = names[rand() % 20];
       string d = drinks[rand() % 20];
       enqueue(head, tail, n, d);
-      cout << "A new customer joined the queue.\n";
+      cout << "A new customer joined the coffee queue.\n";
+    }
+
+    if (rand() % 2 == 0) {
+      string n = names[rand() % 20];
+      muffinQueue.push_back(n);
+      cout << "A new customer joined the muffin queue.\n";
     }
     dequeue(head, tail);
-    printQueue(head);
-  }
 
-  return 0;
-}
+    if (!muffinQueue.empty()) {
+      muffinQueue.pop_front();
+    }
+    cout << "Coffee booth queue:\n";
+    printQueue(head);
+
+    cout << "Muffin booth queue:\n";
+    if (muffinQueue.empty()) {
+      cout << "Empty queue.\n";
+    } else {
+      for (int i = 0; i < muffinQueue.size(); i++) {
+        cout << "[" << i + 1 << "]" << muffinQueue[i] << endl;
+      }
+      cout << endl;
+    }
+
+    return 0;
+  }

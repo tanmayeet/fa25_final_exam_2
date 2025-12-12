@@ -50,7 +50,7 @@ void printQueue(Node* head) {
   int count = 1;
   Node* curr = head;
   while (curr) {
-    cout << "[" << count++ << "]" << curr->name << " ordered " << curr->drink
+    cout << "[" << count++ << "] " << curr->name << " ordered " << curr->drink
          << endl;
     curr = curr->next;
   }
@@ -108,7 +108,7 @@ int main() {
 
   cout << "Initial queue for muffins:\n";
   for (int i = 0; i < muffinQueue.size(); i++) {
-    cout << "[" << i + 1 << "]" << muffinQueue[i] << endl;
+    cout << "[" << i + 1 << "] " << muffinQueue[i] << endl;
   }
   cout << endl;
 
@@ -141,10 +141,10 @@ int main() {
       cout << "Empty queue.\n";
     } else {
       for (int i = 0; i < muffinQueue.size(); i++) {
-        cout << "[" << i + 1 << "]" << muffinQueue[i] << endl;
+        cout << "[" << i + 1 << "] " << muffinQueue[i] << endl;
       }
       cout << endl;
     }
-
-    return 0;
   }
+  return 0;
+}

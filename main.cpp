@@ -164,7 +164,6 @@ int main() {
     cout << "[" << pos++ << "] " << temp.top() << endl;
     temp.pop();
   }
-
   cout << "\n";
 
   // running the simulation 10 times

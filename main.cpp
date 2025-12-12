@@ -9,6 +9,8 @@ struct Node {
   Node* next;
 };
 
+// sim
+
 int main() {
   string names[] = {"Alex", "Jordan", "Taylor", "Morgan", "Casey"};
   string drinks[] = {"Latte", "Mocha", "Espresso", "Cappuccino", "Americano"};

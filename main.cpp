@@ -1,3 +1,6 @@
+// COMSC210 | Final Exam 2 | Tanmayee Chalamalasetti
+// IDE used: VS Code
+
 #include <cstdlib>
 #include <ctime>
 #include <deque>
@@ -158,29 +161,29 @@ int main() {
     // 50% probability
     if (rand() % prob == 0) {
       // for drinks
-      string n = names[rand() % 20];
-      string d = drinks[rand() % 20];
+      string n = names[rand() % namesNum];
+      string d = drinks[rand() % drinksNum];
       enqueue(head, tail, n, d);
       cout << "A new customer joined the coffee queue.\n";
     }
 
     if (rand() % prob == 0) {
       // for muffins
-      string n = names[rand() % 20];
+      string n = names[rand() % namesNum];
       muffinQueue.push_back(n);
       cout << "A new customer joined the muffin queue.\n";
     }
 
     if (rand() % prob == 0) {
       // for bracelets
-      string n = names[rand() % 20];
+      string n = names[rand() % namesNum];
       braceletQueue.push_back(n);
       cout << "A new customer joined the bracelet queue.\n";
     }
 
     if (rand() % prob == 0) {
       // for saxophones
-      string n = names[rand() % 20];
+      string n = names[rand() % namesNum];
       saxQueue.push(n);
       cout << "A new customer joined the saxophone queue.\n";
     }
@@ -193,7 +196,7 @@ int main() {
     }
 
     if (!braceletQueue.empty()) {
-      braceletQueue.pop_back();
+      braceletQueue.erase(braceletQueue.begin());
     }
 
     if (!saxQueue.empty()) {
@@ -202,6 +205,7 @@ int main() {
 
     cout << "Coffee booth queue:\n";
     printQueue(head);
+    cout << endl;
 
     cout << "Muffin booth queue:\n";
     if (muffinQueue.empty()) {
@@ -234,9 +238,7 @@ int main() {
         temp2.pop();
       }
     }
+    cout << endl;
   }
-  cout << endl;
-
-  cout << "\n\n";
   return 0;
 }

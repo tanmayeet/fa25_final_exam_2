@@ -94,10 +94,17 @@ int main() {
   cout << "Initial queue:\n";
   printQueue(head);
 
-  dequeue(head, tail);
-
-  cout << "After serving one customer:\n";
-  printQueue(head);
+  for (int round = 1; round <= 10; round++) {
+    cout << "Round " << round << ":\n";
+    if (rand() % 2 == 0) {
+      string n = names[rand() % 20];
+      string d = drinks[rand() % 20];
+      enqueue(head, tail, n, d);
+      cout << "A new customer joined the queue.\n";
+    }
+    dequeue(head, tail);
+    printQueue(head);
+  }
 
   return 0;
 }

@@ -85,6 +85,7 @@ int main() {
   Node* head = nullptr;
   Node* tail = nullptr;
 
+  // part of Milestone 2
   for (int i = 0; i < 3; i++) {
     string n = names[rand() % 20];
     string d = drinks[rand() % 20];
